@@ -1,4 +1,5 @@
 require("johnnyboy.remap")
+require("johnnyboy.folds")
 require("johnnyboy.theme")
 
 vim.g.loaded_netrw = 1
