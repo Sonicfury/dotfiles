@@ -72,6 +72,13 @@ local leader_normal_mappings = {
         o = "Find old file",
         f = "Fuzze find file"
     },
+    t = {
+        name = "Tabs",
+        t = "New",
+        c = "Close",
+        n = "Next",
+        p = "Previous",
+    },
     D = {
         name = "Database",
         u = "Toggle UI",

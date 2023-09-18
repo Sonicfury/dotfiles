@@ -28,3 +28,8 @@ km.set("n", "<leader>wk", "<C-w>k")
 km.set("n", "<leader>wh", "<C-w>h")
 km.set("n", "<leader>wl", "<C-w>l")
 km.set("n", "<leader>mp", ":rightbelow vsplit | terminal glow %<CR>")
+-- tabs 
+km.set("n", "<leader>tt", ":tabnew<CR>")
+km.set("n", "<leader>tc", ":tabclose<CR>")
+km.set("n", "<leader>tn", ":tabnext<CR>")
+km.set("n", "<leader>tp", ":tabprev<CR>")
