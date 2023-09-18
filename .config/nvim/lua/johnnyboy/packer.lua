@@ -35,7 +35,18 @@ return require('packer').startup(function(use)
 
     use 'm4xshen/smartcolumn.nvim'
     use 'ellisonleao/gruvbox.nvim'
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use { 'nvim-treesitter/nvim-treesitter',
+        {
+            run = ':TSUpdate'
+        }
+    }
+
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
+    }
+
     use 'mbbill/undotree'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
