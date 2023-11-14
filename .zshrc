@@ -199,6 +199,49 @@ function gpaste() {
     curl https://paste.rs/${id}
 }
 
+
+### git create branch
+gsc() {
+  local type=$1
+  local us_number=$2
+  local name=$3
+  local prefix=""
+
+  case $type in
+    ft|feat|feature)
+      prefix="feat/"
+      ;;
+    fx|fix)
+      prefix="fix/"
+      ;;
+    *)
+      prefix=""
+      ;;
+  esac
+
+  local branch_name="$prefix$us_number"
+  
+  if [ -n "$name" ]; then
+    local formatted_name=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ /_/g')
+    branch_name="$branch_name-$formatted_name"
+  fi
+
+  git switch -c "$branch_name"
+}
+
+### git push auto set remote
+gpsu() {
+  # Récupérer le nom de la branche en cours
+  current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+  if [ -z "$current_branch" ]; then
+    echo "Vous n'êtes pas sur une branche."
+    return 1
+  fi
+
+  # Configurer l'upstream avec l'origine
+  git push --set-upstream origin "$current_branch"
+}
 ## utility end
 
 

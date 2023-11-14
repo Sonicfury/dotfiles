@@ -39,9 +39,7 @@ return require('packer').startup(function(use)
     use 'm4xshen/smartcolumn.nvim'
     use 'ellisonleao/gruvbox.nvim'
     use { 'nvim-treesitter/nvim-treesitter',
-        {
-            run = ':TSUpdate'
-        }
+        run = ':TSUpdate'
     }
 
     use {
