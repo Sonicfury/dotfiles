@@ -20,7 +20,6 @@ export NVM_DIR="$HOME/.nvm"
 alias c="clear"
 alias ll="ls -alh"
 alias l="exa --long -L 1 -T --git-ignore --git --icons"
-alias nv="nvim ."
 
 alias configure="nvim ~/.zshrc"
 alias refresh="source ~/.zshrc"
@@ -40,21 +39,32 @@ alias gl="git log"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" 
 
 # docker aliases
-alias dls="docker container ls"
-alias drdi="docker rmi $(docker images -f "dangling=true" -q)"
-alias dsa="docker stop $(docker ps -q)"
+# alias dls="docker container ls"
+# alias drdi="docker rmi $(docker images -f "dangling=true" -q)"
+# alias dsa="docker stop $(docker ps -q)"
 
 # functions
 
 ## docker
-function dx() {
-    docker exec -it "$1" "$2"
+# function dx() {
+#     docker exec -it "$1" "$2"
+# }
+#
+# function dsh() {
+#     docker exec -it "$1" sh
+# }
+## docker end
+
+## nvim
+function nv() {
+    local path="$1"
+    if [[ -z $path ]]; then
+        path="."
+    fi
+
+    nvim $path
 }
 
-function dsh() {
-    docker exec -it "$1" sh
-}
-## docker end
 
 ## tmux
 ### returns a random word
@@ -242,6 +252,12 @@ gpsu() {
   # Configurer l'upstream avec l'origine
   git push --set-upstream origin "$current_branch"
 }
+
+## mouse events issue
+fix_mouse() {
+    echo -e "\e[?1003h"
+    echo -e "\e[?1003l"
+}
 ## utility end
 
 
@@ -253,3 +269,16 @@ eval "$(zoxide init zsh)"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+# bun completions
+[ -s "/home/theo/.bun/_bun" ] && source "/home/theo/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# fd
+export PATH="$HOME/.local/bin:$PATH"
+
+# opam configuration
+test -r /home/theo/.opam/opam-init/init.zsh && . /home/theo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
